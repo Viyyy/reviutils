@@ -1,5 +1,6 @@
 import os
 import sys
+from typing import Union
 # 添加当前路径到环境变量
 if not sys.path.__contains__(os.getcwd()):
     sys.path.append(os.getcwd())
@@ -9,8 +10,10 @@ import librosa
 import soundfile
 from torch import Tensor
 from numpy import ndarray
+
+signal_type = Union[Tensor, ndarray]
 # 裁剪音频
-def clip_signal(signal:Tensor|ndarray,sr,start_time,end_time):
+def clip_signal(signal:signal_type,sr,start_time,end_time):
     samples = signal.shape[1]
     start_postion = int(sr * start_time)
     end_position = int(sr * end_time)
@@ -25,7 +28,7 @@ def clip_signal(signal:Tensor|ndarray,sr,start_time,end_time):
     return result
 
 # 裁剪音频
-def _clip_signal_by_samples(signal:Tensor|ndarray,start_postion,end_position):
+def _clip_signal_by_samples(signal:signal_type,start_postion,end_position):
     samples = signal.shape[0]
     
     if  start_postion>end_position or start_postion>samples or end_position>samples or start_postion<0:
@@ -35,7 +38,7 @@ def _clip_signal_by_samples(signal:Tensor|ndarray,start_postion,end_position):
     return signal
 
 # 随机裁剪/填充音频
-def rand_clip(signal:Tensor|ndarray,sr,target_len,need_time_returned:bool=False):
+def rand_clip(signal:signal_type,sr,target_len,need_time_returned:bool=False):
     samples =  len(signal)
     target_samples = sr * target_len
     # 随机裁剪
