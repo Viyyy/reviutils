@@ -7,7 +7,7 @@ setup(
     url='https://github.com/Viyyy/viutils',
     author='Re.VI',
     author_email='reviy-top@outlook.com',
-    license='MIT',
+    license='Apache License 2.0',
     packages=['src'],
     install_requires=['numpy'],
     zip_safe=False
