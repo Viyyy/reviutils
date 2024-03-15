@@ -3,12 +3,15 @@
 <p align='center'>
 <a href="./README_EN.md">English</a>｜
 <a href="./README.md">简体中文</a>
-
 </p>
 
 <div align='center'>
 <a href="https://github.com/Viyyy/reviutils"><img src="https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"></a>
+&nbsp;&nbsp;
+<a href="https://utilsdemo.reviy.top/docs"><img src="https://img.shields.io/badge/fastapi-demo-red.svg"></a>
+&nbsp;&nbsp;
 <a href="https://pypi.org/project/reviutils/"><img src="https://img.shields.io/pypi/v/reviutils.svg"></a>
+&nbsp;&nbsp;
 <a href="./LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-yellow"></a>
 </div>
 
