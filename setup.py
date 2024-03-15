@@ -3,9 +3,14 @@ from setuptools import setup
 with open('requirements.txt','r',encoding='utf-8') as f:
     packages = [l for l in f.read().splitlines() if not l.startswith('#') and l.strip()!='']
 
+with open('README.md','r',encoding='utf-8') as f:
+    long_description = f.read()
+    
 setup(
     name='reviutils',
-    version='1.0.2',
+    version='1.0.5',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     description='A common library frequently used on python',
     url='https://github.com/Viyyy/viutils',
     author='Re.VI',
@@ -24,3 +29,4 @@ python setup.py sdist bdist_wheel
 # 上传命令
 twine upload dist/* --verbose
 '''
+

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="docs/css/readme.css">
+<link rel="stylesheet" href="./docs/css/readme.css">
 <h1 class='ct'>reviutils</h1>
 <p class='ct'>一个常用的Python库</p>
 <p class='ct'>
