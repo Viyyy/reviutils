@@ -1,12 +1,12 @@
-<link rel="stylesheet" href="./docs/css/readme.css">
-<h1 class='ct'>reviutils</h1>
-<p class='ct'>一个常用的Python库</p>
-<p class='ct'>
+<h1 align="center">reviutils</h1>
+<p align="center">一个常用的Python库</p>
+<p align="center">
 <a href="./README.md">简体中文</a>｜
 <a href="./README_EN.md">English</a> 
 </p>
 
-<div class='ct'>
+<div align='center'>
+<a href="https://github.com/Viyyy/reviutils"><img src="https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"></a>
 <a href="https://pypi.org/project/reviutils/"><img src="https://img.shields.io/pypi/v/reviutils.svg"></a>
 <a href="./LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-yellow"></a>
 </div>
