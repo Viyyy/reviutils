@@ -7,11 +7,11 @@
 
 <div align='center'>
 <a href="https://github.com/Viyyy/reviutils"><img src="https://img.shields.io/badge/github-reviutils-red?logo=github"></a>
-&nbsp;&nbsp;
+  
 <a href="https://utilsdemo.reviy.top/docs"><img src="https://img.shields.io/badge/fastapi-demo-green?logo=fastapi"></a>
-&nbsp;&nbsp;
+  
 <a href="https://pypi.org/project/reviutils/"><img src="https://img.shields.io/pypi/v/reviutils.svg"></a>
-&nbsp;&nbsp;
+  
 <a href="./LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-yellow"></a>
 </div>
 
@@ -25,8 +25,7 @@
 
 - #### reviutils.noisepollution.evaluation
 
-  城市区域环境噪声级别分类：根据《城市地区环境噪声监测技术规范-城市声环境总体监测》（HJ640-2012）中的规定，提供城市区域环境噪声的评估和分类。
-  道路交通噪声强度分类：根据《城市地区环境噪声监测技术规范-城市声环境总体监测》（HJ640-2012）中的规定，提供道路交通噪声的强度评估和分类。
+  根据《城市地区环境噪声监测技术规范-城市声环境总体监测》（HJ640-2012）中的规定，提供城市区域环境噪声以及道路交通噪声的强度评估和分类。
 - #### reviutils.noisepollution.hourhelper
 
   小时数据处理：可对小时数据进行处理，区分白天和夜晚时段。
