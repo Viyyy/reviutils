@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+# Author: Vi
+# Created on: 2024-03-15 09:40:23
+# Description: 常用方法集合
+
 from bisect import bisect_left
 from typing import List, Union
 from enum import Enum

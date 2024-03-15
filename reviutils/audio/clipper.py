@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+# Author: Vi
+# Created on: 2024-03-15 09:40:49
+# Description: 用于裁剪/填充音频
+
 import os
 import sys
 from typing import Union

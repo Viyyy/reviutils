@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+# Author: Vi
+# Created on: 2024-03-15 09:39:39
+# Description: 用于计算声压级数据
+
 from typing import List, Union, Tuple
 import pandas as pd
 import numpy as np

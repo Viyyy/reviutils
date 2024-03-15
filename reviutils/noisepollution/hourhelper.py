@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+# Author: Vi
+# Created on: 2024-03-15 09:38:39
+# Description: 用于处理小时数据，区分昼夜间
+
 from functools import singledispatch
 from datetime import datetime
 

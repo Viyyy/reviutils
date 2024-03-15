@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+# Author: Vi
+# Created on: 2024-03-15 09:41:27
+# Description: 用于读取音频文件
+
 import torchaudio
 import numpy as np
 from pydub import AudioSegment
