@@ -1,8 +1,8 @@
 <h1 align='center'>reviutils</h1>
 <p align='center'>A common library frequently used on python</p>
 <p align='center'>
-<a href="./README_EN.md">English</a>｜
-<a href="./README.md">简体中文</a>
+<a href="https://github.com/Viyyy/reviutils/blob/main/README_EN.md">English</a>｜
+<a href="https://github.com/Viyyy/reviutils/blob/main/README.md">简体中文</a>
 </p>
 
 <div align='center'>
