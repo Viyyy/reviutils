@@ -1,3 +1,10 @@
+'''
+# 打包命令
+python setup.py sdist bdist_wheel
+# 上传命令
+twine upload dist/* --verbose
+'''
+
 from setuptools import setup
     
 with open('requirements.txt','r',encoding='utf-8') as f:
@@ -6,9 +13,24 @@ with open('requirements.txt','r',encoding='utf-8') as f:
 with open('README.md','r',encoding='utf-8') as f:
     long_description = f.read()
     
+
+import os
+import shutil
+
+# 递归删除每个子文件夹的__pycache__
+def del_pycache(path):
+    for root, dirs, files in os.walk(path):
+        for dir in dirs:
+            if dir == '__pycache__':
+                shutil.rmtree(os.path.join(root, dir))
+            else:
+                del_pycache(os.path.join(root, dir))
+
+del_pycache('reviutils') # 删除reviutils下的每个子文件夹的__pycache__文件夹
+
 setup(
     name='reviutils',
-    version='1.2.2',
+    version='1.2.4',
     long_description=long_description,
     long_description_content_type='text/markdown',
     description='A common library frequently used on python',
@@ -23,10 +45,5 @@ setup(
     },
     zip_safe=False
 )
-'''
-# 打包命令
-python setup.py sdist bdist_wheel 
-# 上传命令
-twine upload dist/* --verbose
-'''
+
 
