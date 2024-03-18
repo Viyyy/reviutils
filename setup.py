@@ -8,7 +8,7 @@ with open('README.md','r',encoding='utf-8') as f:
     
 setup(
     name='reviutils',
-    version='1.2.6',
+    version='1.3.6',
     long_description=long_description,
     long_description_content_type='text/markdown',
     description='A common library frequently used on python',
