@@ -3,9 +3,13 @@
 # Created on: 2024-03-15 09:41:27
 # Description: 用于读取音频文件
 
-import torchaudio
-import numpy as np
-from pydub import AudioSegment
+try:
+    import torchaudio
+    import numpy as np
+    from pydub import AudioSegment
+except ImportError:
+    # 提示安装 reviutils[audio]
+    raise ImportError("Please install reviutils[audio] to use this module: pip install reviutils[audio]")
 
 def get_audio_by_audio_segment(file):
     '''使用pydub的AudioSegment读取音频'''

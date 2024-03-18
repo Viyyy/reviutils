@@ -10,11 +10,16 @@ from typing import Union
 if not sys.path.__contains__(os.getcwd()):
     sys.path.append(os.getcwd())
 
+
 import numpy as np
-import librosa
-import soundfile
-from torch import Tensor
-from numpy import ndarray
+try:
+    import librosa
+    import soundfile
+    from torch import Tensor
+    from numpy import ndarray
+except ImportError:
+    # 提示安装 reviutils[audio]
+    raise ImportError("Please install reviutils[audio] to use this module: pip install reviutils[audio]")
 
 signal_type = Union[Tensor, ndarray]
 # 裁剪音频
