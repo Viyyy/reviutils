@@ -8,7 +8,7 @@ with open('README.md','r',encoding='utf-8') as f:
     
 setup(
     name='reviutils',
-    version='1.2.0',
+    version='1.2.1',
     long_description=long_description,
     long_description_content_type='text/markdown',
     description='A common library frequently used on python',
@@ -16,12 +16,12 @@ setup(
     author='Re.VI',
     author_email='reviy-top@outlook.com',
     license='Apache License 2.0',
-    packages=['src.common','src.noisepollution'],
+    packages=['reviutils.common','reviutils.noisepollution'],
     install_requires=packages,
     extras_require={
         'audio': ['librosa', 'soundfile','torch', 'torchaudio','pydub']
     },
-    ext_package=['src.audio'],
+    ext_package=['reviutils.audio'],
     zip_safe=False
 )
 '''
