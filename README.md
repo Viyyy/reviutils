@@ -26,6 +26,9 @@
 - #### reviutils.noisepollution.evaluation
 
   根据《城市地区环境噪声监测技术规范-城市声环境总体监测》（HJ640-2012）中的规定，提供城市区域环境噪声以及道路交通噪声的强度评估和分类。
+- #### reviutils.noisepollution.funcarea
+
+  根据声环境质量标准(GB 3096-2008)，提供声功能区相关信息。
 - #### reviutils.noisepollution.hourhelper
 
   小时数据处理：可对小时数据进行处理，区分白天和夜晚时段。
