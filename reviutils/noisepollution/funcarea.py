@@ -5,7 +5,7 @@
 
 from enum import Enum
 from pydantic import BaseModel, Field
-from functools import singledispatch
+from functools import singledispatch, cache
 
 class FuncAreaInfo(BaseModel):
     """声功能区信息"""
@@ -16,7 +16,7 @@ class FuncAreaInfo(BaseModel):
     desc: str = Field(description="声功能区描述")
 
 class FuncArea(Enum):
-    # """声功能区"""
+    """声功能区"""
     F0 = FuncAreaInfo(name="0类", id=30, lmtd=50, lmtn=40, desc="指康复疗养区等特别需要安静的区域。")
     F1 = FuncAreaInfo(name="1类", id=31, lmtd=55, lmtn=45, desc="指以居民住宅、医疗卫生、文化教育、科研设计、行政办公为主要功能，需要保持安静的区域。")
     F2 = FuncAreaInfo(name="2类", id=32, lmtd=60, lmtn=50, desc="指以商业金融、集市贸易为主要功能，或者居住、商业、工业混杂，需要维护住宅安静的区域。")
@@ -24,7 +24,17 @@ class FuncArea(Enum):
     F4a = FuncAreaInfo(name="4a类", id=34, lmtd=70, lmtn=55, desc="指交通干线两侧一定距离之内，需要防止交通噪声对周围环境产生严重影响的区域，包括4a类和 4b类两种类型。4a类为高速公路、一级公路、二级公路、城市快速路、城市主干路、城市次干路、城市轨道交通(地面段)、内河航道两侧区域。")
     F4b = FuncAreaInfo(name="4b类", id=35, lmtd=70, lmtn=60, desc="指交通干线两侧一定距离之内，需要防止交通噪声对周围环境产生严重影响的区域，包括4a类和 4b类两种类型。4b 类为铁路干线两侧区域。")
     
+class FuncAreaSimple(Enum):
+    '''功能区类别'''
+    F0 = '0类'
+    F1 = '1类'
+    F2 = '2类'
+    F3 = '3类'
+    F4a = '4a类'
+    F4b = '4b类'
+    
 @singledispatch
+@cache
 def get_func_area_info(name_or_id_or_enum):
     '''
     根据名称（str），id（int）或FuncArea对象，返回对应的FuncAreaInfo对象
