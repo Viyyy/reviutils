@@ -30,7 +30,7 @@ del_pycache('reviutils') # 删除reviutils下的每个子文件夹的__pycache__
 
 setup(
     name='reviutils',
-    version='1.2.4',
+    version='1.2.5',
     long_description=long_description,
     long_description_content_type='text/markdown',
     description='A common library frequently used on python',
