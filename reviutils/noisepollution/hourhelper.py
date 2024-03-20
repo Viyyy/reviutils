@@ -21,8 +21,11 @@ def _(time):
 
 @is_daytime.register(str)
 def _(time):
-    hour = int(time.split(':')[0])
-    return is_daytime(hour)
+    try:
+        time = datetime.strptime(time, '%Y-%m-%d %H:%M:%S')
+        return is_daytime(time)
+    except Exception:
+        raise ValueError('无法解析时间字符串: {}'.format(time))
 
 @is_daytime.register(float)
 def _(time):
