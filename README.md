@@ -6,13 +6,13 @@
 </p>
 
 <div align='center'>
-<a href="https://github.com/Viyyy/reviutils"><img src="https://img.shields.io/badge/github-reviutils-red?logo=github"></a>
+<a href="https://github.com/Viyyy/reviutils" target="_blank"><img src="https://img.shields.io/badge/github-reviutils-red?logo=github"></a>
   
-<a href="https://utilsdemo.reviy.top/docs"><img src="https://img.shields.io/badge/fastapi-demo-green?logo=fastapi"></a>
+<a href="https://utilsdemo.reviy.top/docs" target="_blank"><img src="https://img.shields.io/badge/fastapi-demo-green?logo=fastapi"></a>
   
-<a href="https://pypi.org/project/reviutils/"><img src="https://img.shields.io/pypi/v/reviutils.svg"></a>
+<a href="https://pypi.org/project/reviutils/" target="_blank"><img src="https://img.shields.io/pypi/v/reviutils.svg"></a>
   
-<a href="./LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-yellow"></a>
+<a href="./LICENSE" target="_blank"><img src="https://img.shields.io/badge/license-Apache--2.0-yellow"></a>
 </div>
 
 ## 功能
