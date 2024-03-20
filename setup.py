@@ -30,7 +30,7 @@ del_pycache('reviutils') # 删除reviutils下的每个子文件夹的__pycache__
 
 setup(
     name='reviutils',
-    version='1.2.8',
+    version='1.2.9',
     long_description=long_description,
     long_description_content_type='text/markdown',
     description='A common library frequently used on python',
@@ -41,7 +41,7 @@ setup(
     packages=['reviutils.common','reviutils.noisepollution','reviutils.audio'],
     install_requires=packages,
     extras_require={
-        'audio': ['librosa', 'soundfile','torch', 'torchaudio','pydub']
+        'audio': ['librosa', 'soundfile','torch', 'torchaudio','pydub','starlette']
     },
     zip_safe=False
 )
