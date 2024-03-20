@@ -3,6 +3,8 @@
 # Created on: 2024-03-15 09:41:27
 # Description: 用于读取音频文件
 
+from functools import singledispatch
+
 try:
     import torchaudio
     import numpy as np
@@ -19,18 +21,25 @@ def get_audio_by_audio_segment(file):
     sr = audio_seg.frame_rate
     return audio, sr
     
-def load_audio_from_file(audio_path):
+@singledispatch
+def load_audio_from_file(audio_file):
+    raise NotImplementedError("Unsupported audio file format")
+
+@load_audio_from_file.register(str)
+def load_audio_from_filepath(audio_file):
     '''从音频文件中读取音频'''
-    if '.wav' in audio_path.lower():
-        audio, sr = torchaudio.load(audio_path)
+    if '.wav' in audio_file.lower():
+        audio, sr = torchaudio.load(audio_file)
     else:
-        audio, sr = get_audio_by_audio_segment(file=audio_path)
+        audio, sr = get_audio_by_audio_segment(file=audio_file)
     return audio, sr
 
-def load_audio_from_temporary_file(temp_file):
+from starlette.datastructures import UploadFile
+@load_audio_from_file.register(UploadFile)
+def load_audio_from_temporary_file(audio_file):
     '''从（网络）临时文件中读取音频'''
-    if '.wav' in temp_file.filename.lower():
-        audio, sr = torchaudio.load(temp_file.file)
+    if '.wav' in audio_file.filename.lower():
+        audio, sr = torchaudio.load(audio_file.file)
     else:
-        audio, sr = get_audio_by_audio_segment(file=temp_file.file)
+        audio, sr = get_audio_by_audio_segment(file=audio_file.file)
     return audio, sr
