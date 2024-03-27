@@ -17,6 +17,14 @@
 
 ## 功能
 
+### reviutils.api
+
+  整合常用api接口
+
+#### reviutils.api.amap
+
+  整合高德地图api接口
+
 ### reviutils.common
 
   这个模块提供了一系列常用的方法，可以在各种应用中使用。这个包中的方法旨在简化常见的编程任务，增强代码的可重用性。
