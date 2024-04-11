@@ -56,6 +56,10 @@
 
   Offers the ability to read audio files.  This feature allows you to load audio files into your application for further processing or analysis.
 
+### reviutils.gis
+
+    Longitude and latitude converters available.
+
 ## Installation
 
 #### Conventional Module Installation
