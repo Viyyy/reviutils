@@ -3,10 +3,10 @@ import math
 from typing import Union
 
 class CRS(Enum):
-    WGS84 = 'EPSG:4326'
-    GCJ02 = 'EPSG:3395'
-    BD09 = 'EPSG:3857'
-    MapBar = 'EPSG:54030'
+    WGS84 = 'wgs84'
+    GCJ02 = 'gcj02'
+    BD09 = 'bd09'
+    MapBar = 'mapbar'
 
 # region 5个基础的坐标转换
 ''' MapBar-->WGS84<-->GCJ02<-->BD09
@@ -123,7 +123,7 @@ class _Convertor:
     def transform_batch(self, lngs:list[float], lats:list[float], from_crs:CRS, to_crs:CRS) -> list[tuple]:
         if from_crs == to_crs:
             return list(zip(lngs, lats))
-        if from_crs not in self.graph or to_crs not in self.graph[from_crs]:
+        if not self.check_graph(from_crs, to_crs):
             raise ValueError(f"No transform from {from_crs} to {to_crs}")
         for func in self.graph[from_crs][to_crs]:
             lngs, lats = list(zip(*[func(lng, lat) for lng, lat in zip(lngs, lats)]))
@@ -133,6 +133,10 @@ class _Convertor:
         for from_crs in self.graph:
             for to_crs in self.graph[from_crs]:
                 print(f"{from_crs} To {to_crs}: {'->'.join([func.__name__ for func in self.graph[from_crs][to_crs]])}")
+                
+    def check_graph(self, from_crs:CRS, to_crs:CRS):
+        return from_crs in self.graph and to_crs in self.graph[from_crs]
+        
 # 实例化转换器
 Convertor = _Convertor()
 

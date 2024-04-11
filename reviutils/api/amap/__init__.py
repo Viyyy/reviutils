@@ -50,7 +50,7 @@ class AmapAPI:
                 return None
             
     @cache
-    def convert_lng_lat(self, lng, lat, coord_sys:CoordSys=CoordSys.GPS):
+    def convert_lng_lat(self, lng, lat, coord_sys:CoordSys=CoordSys.WGS84):
         '''坐标转换,将坐标从一种坐标系转换为另一种坐标系
         参数：
         - lng：经度
