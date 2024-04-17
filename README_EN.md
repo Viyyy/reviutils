@@ -60,6 +60,10 @@
 
     Longitude and latitude converters available.
 
+### reviutils.omap
+
+    Used to manage and generate Omap's objects.
+
 ## Installation
 
 #### Conventional Module Installation

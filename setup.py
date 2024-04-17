@@ -10,7 +10,7 @@ from setuptools import setup
 
 
 name = "reviutils"
-version = "1.4.0a6"
+version = "1.4.0"
 packages = [
     "reviutils.common",
     "reviutils.noisepollution",
@@ -24,7 +24,7 @@ packages = [
 ]
 
 
-def del_setuptools_pycache(path):
+def del_setuptools_pycache():
     # 删除setup.py文件构建的build, dist, viutils.egg-info文件夹
     if os.path.exists("build"):
         shutil.rmtree("build")
@@ -45,6 +45,7 @@ def del_pycache(path):
 
 
 def main():
+    del_setuptools_pycache()
     with open("requirements.txt", "r", encoding="utf-8") as f:
         install_requires = [
             l
