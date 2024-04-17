@@ -77,13 +77,13 @@ class Colors(EnumBase):
     """ color enum class """
     Default = Color(name="默认", id=65535)
     Black = Color(name="黑色", id=4194304000)
+    White = Color(name="白色", id=4211081215)
     Pink = Color(name="粉色", id=4202692863)
     Green = Color(name="绿色", id=4194369280)
     Blue = Color(name="蓝色", id=4211015680)
     Red = Color(name="红色", id=4194304255)
     Yellow = Color(name="黄色", id=4194369535)
     Cyan = Color(name="青色", id=4211080960)
-    Carmine = Color(name="卡其色", id=4211015935)
     Purple = Color(name="紫色", id=4211015808)
 # endregion
 
