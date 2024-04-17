@@ -113,7 +113,7 @@ class Polyline(ItemBase):
         )
         detail = PolylineDetail(
             Gcj02=is_gcj02,
-            Mtp = polyline_type.value.Mtp,
+            Mtp = len(latlng)//2 if polyline_type == PolylineTypes.Polyline else polyline_type.value.Mtp,
             Latlng=latlng,
             TrackDraw=tdo,
             ShowName=show_name,
@@ -187,13 +187,15 @@ class Text(ItemBase):
         lng: float,
         lat: float,
         is_gcj02: bool,
+        font_size:int = 16,
         color: Colors = Colors.Default,
         rotation: int = 0,
         parent_id: int = 1,
     ):
         extinfo = ExtInfoObject(
             FontClr=color.value.id,
-            FontRotateAngle=rotation
+            FontRotateAngle=rotation,
+            FontSize=font_size
         )
         detail = TextDetail(Lng=lng, Lat=lat, Gcj02=is_gcj02, ExtInfo=extinfo)
         obj = ObjectBase(

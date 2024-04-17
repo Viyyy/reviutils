@@ -1,1 +1,1 @@
-from reviutils.omap.samples.main import Point, Polyline
+from .samples import *

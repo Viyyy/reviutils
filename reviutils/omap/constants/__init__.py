@@ -79,7 +79,6 @@ class Colors(EnumBase):
     Black = Color(name="黑色", id=4194304000)
     Pink = Color(name="粉色", id=4202692863)
     Green = Color(name="绿色", id=4194369280)
-    White = Color(name="白色", id=None)
     Blue = Color(name="蓝色", id=4211015680)
     Red = Color(name="红色", id=4194304255)
     Yellow = Color(name="黄色", id=4194369535)
@@ -109,13 +108,13 @@ class ObjectTypes(EnumBase):
     
 
 class PolylineType(ConstantsBase):
-    Mtp:int = Field(description="MTP")
+    Mtp:int = Field(description="MTP, 指最多的点的数量")
     ShowType:int = Field(description="显示类型")
     length_min: int = Field(description="至少需要的坐标数")
     length_max: int = Field(description="最多允许的坐标数")
     
 class PolylineTypes(EnumBase):
-    Polyline = PolylineType(name="折线", id=8, Mtp=7, ShowType=5, length_min=2, length_max=9999)
+    Polyline = PolylineType(name="折线", id=8, Mtp=2, ShowType=5, length_min=2, length_max=9999)
     Arc = PolylineType(name="圆弧", id=8, Mtp=3, ShowType=7, length_min=3, length_max=3)
     Ellipse = PolylineType(name="椭圆", id=8, Mtp=3, ShowType=9, length_min=3, length_max=3)
     Circle = PolylineType(name="圆", id=8, Mtp=2, ShowType=7, length_min=2, length_max=2)
