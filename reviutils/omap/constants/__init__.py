@@ -85,6 +85,7 @@ class Colors(EnumBase):
     Yellow = Color(name="黄色", id=4194369535)
     Cyan = Color(name="青色", id=4211080960)
     Purple = Color(name="紫色", id=4211015808)
+    Orange = Color(name="橙色", id=4194304511)
 # endregion
 
 
@@ -119,4 +120,15 @@ class PolylineTypes(EnumBase):
     Ellipse = PolylineType(name="椭圆", id=8, Mtp=3, ShowType=9, length_min=3, length_max=3)
     Circle = PolylineType(name="圆", id=8, Mtp=2, ShowType=7, length_min=2, length_max=2)
     
+class PolygonType(ConstantsBase):
+    start_angle: int = Field(description="起始角度")
+    end_angle: int = Field(description="终止角度")
+    
+    length_min: int = Field(description="至少需要的坐标数")
+    length_max: int = Field(description="最多允许的坐标数")
+    
+class PolygonTypes(EnumBase):
+    Polygon = PolygonType(name="多边形", id=13, start_angle=180, end_angle=180, length_min=3, length_max=9999)
+    Rectangle = PolygonType(name="矩形", id=13, start_angle=180, end_angle=180, length_min=2, length_max=2)
+    Ellipse = PolygonType(name="椭圆", id=13, start_angle=0, end_angle=360, length_min=2, length_max=2)
 # endregion

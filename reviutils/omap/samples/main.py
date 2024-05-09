@@ -5,6 +5,7 @@ from .Base import ItemBase
 from ..constants import MarkerTypes
 from ..constants import Colors
 from ..constants import PolylineTypes
+from ..constants import PolygonTypes
 
 from pydantic import Field, BaseModel
 from typing import List, Union
@@ -28,12 +29,86 @@ def obj_to_json(obj):
     return result
 
 
-class PolygonDetail(BaseModel):
-    pass
+class PolygonDetail(DetailBase):
+    '''
+    "ObjectDetail":
+    {"Gcj02":0,"OverlayIdx":0,"ShowLevel":1,"ShowLevelMax":0,"OuterRgnIdx":0,"EditMode":1,"ShowFlag":0,"LineClr":65535,"LineWidth":1,"CadLineShowWid":0,"LineAlpha":50,"AreaClr":65535,"AreaAlpha":50,"StartAngle":0.00000000,"EndAngle":360.00000000,"FillType":0,"FillSubType":0,"FillPattern":0,"FillChgClr":0,"FillRotate":0.00000000,"FillScale":0.00000000,"FillOffsetX":0.00000000,"FillOffsetY":0.00000000,"Mtp":2,"Latlng":[23.24304351,109.16585804,23.23694565,109.17243418]
+    }
+    '''
+    Mtp: int = Field(description="Mtp of the polygon")
+    Latlng: List[float] = Field(description="List of latitude and longitude of the polygon")
+    LineClr: int = Field(default=65535, description="Line color of the polygon")
+    LineWidth: int = Field(default=1, description="Line width of the polygon")
+    
+    AreaClr: int = Field(default=65535, description="Area color of the polygon")
+    Gcj02: int = Field(description="Whether the coordinates are in GCJ02")
+    
+    LineAlpha: int = Field(default=50, description="Line alpha of the polygon")
+    
+    AreaAlpha: int = Field(default=50, description="Area alpha of the polygon")
+    
+    # 决定形状的值
+    StartAngle: float = Field(description="Start angle of the polygon")
+    EndAngle: float = Field(description="End angle of the polygon")
+    
+    OverlayIdx: int = Field(default=0, description="Overlay index of the polygon")
+    OuterRgnIdx: int = Field(default=0, description="Outer region index of the polygon")
+    EditMode: int = Field(default=1, description="Edit mode of the polygon")
+    ShowFlag: int = Field(default=0, description="Show flag of the polygon")
+    CadLineShowWid: int = Field(default=0, description="Cad line show width of the polygon")
 
+    FillType: int = Field(default=0, description="Fill type of the polygon")
+    FillSubType: int = Field(default=0, description="Fill sub type of the polygon")
+    FillPattern: int = Field(default=0, description="Fill pattern of the polygon")
+    FillChgClr: int = Field(default=0, description="Fill change color of the polygon")
+    FillRotate: float = Field(default=0.0, description="Fill rotate of the polygon")
+    FillScale: float = Field(default=0.0, description="Fill scale of the polygon")
+    FillOffsetX: float = Field(default=0.0, description="Fill offset x of the polygon")
+    FillOffsetY: float = Field(default=0.0, description="Fill offset y of the polygon")
 
+class PolygonObject(ObjectBase):
+    def __init__(self, name, detail:PolygonDetail,comment=""):
+        super().__init__(name=name, obj_detail=detail, type_id=ObjectTypes.Polygon.value.id)
+        self.Comment = comment
+        
 class Polygon(ItemBase):
-    pass
+    def __init__(
+        self,
+        name: str,
+        polygon_type: PolygonTypes,
+        latlng: List[float],
+        is_gcj02: bool,
+        line_color: Union[Colors,int] = Colors.Default,
+        line_width: int = 1,
+        line_alpha: int = 0,
+        area_color: Union[Colors,int] = Colors.Default,
+        area_alpha: int = 0,
+        edit: bool = True,
+        parent_id: int = 1,
+    ):
+        # 检查坐标数量是否符合要求
+        if len(latlng) % 2 != 0:
+            raise ValueError("Polygon coordinates should be even number")
+        assert len(latlng)>=polygon_type.value.length_min*2 and len(latlng)<=polygon_type.value.length_max*2, f"Polygon coordinates should be between {polygon_type.value.length_min*2} and {polygon_type.value.length_max*2}"
+        detail = PolygonDetail(
+            Mtp=len(latlng)//2,
+            Latlng=latlng,
+            StartAngle=polygon_type.value.start_angle,
+            EndAngle=polygon_type.value.end_angle,
+            LineClr=line_color.value.id,
+            LineWidth=line_width,
+            AreaClr=area_color.value.id,
+            Gcj02=is_gcj02,
+            LineAlpha=line_alpha,
+            AreaAlpha=area_alpha,
+            EditMode=int(edit),
+        )
+        obj = PolygonObject(name=name, detail=detail)
+        super().__init__(
+            obj=obj,
+            parent_id=parent_id,
+            type_id=ObjectTypes.Polygon.value.id,
+        )
 
 
 class TrackDrawObject(BaseModel):
@@ -94,7 +169,7 @@ class Polyline(ItemBase):
         polyline_type: PolylineTypes,
         latlng: List[float],
         is_gcj02: bool,
-        line_color: Colors = Colors.Default,
+        line_color: Union[Colors,int] = Colors.Default,
         line_width: int = 1,
         line_alpha: int = 100,
         show_name: bool = False,
@@ -106,7 +181,7 @@ class Polyline(ItemBase):
             raise ValueError("Polyline coordinates should be even number")
         assert len(latlng)>=polyline_type.value.length_min*2 and len(latlng)<=polyline_type.value.length_max*2, f"Polyline coordinates should be between {polyline_type.value.length_min*2} and {polyline_type.value.length_max*2}"
         tdo = TrackDrawObject(
-            LineClr=line_color.value.id,
+            LineClr=line_color.value.id if isinstance(line_color, Colors) else line_color,
             LineWidth=line_width,
             LineAlpha=line_alpha,
             ShowType=polyline_type.value.ShowType,
@@ -188,12 +263,12 @@ class Text(ItemBase):
         lat: float,
         is_gcj02: bool,
         font_size:int = 16,
-        color: Colors = Colors.Default,
+        color: Union[Colors,int] = Colors.Default,
         rotation: int = 0,
         parent_id: int = 1,
     ):
         extinfo = ExtInfoObject(
-            FontClr=color.value.id,
+            FontClr=color.value.id if isinstance(color, Colors) else color,
             FontRotateAngle=rotation,
             FontSize=font_size
         )
@@ -280,9 +355,11 @@ class Folder(ItemBase):
     def __init__(
         self,
         name: str,
-        detail: FolderDetail,
+        detail: FolderDetail=None,
         parent_id: int = 1,
     ):
+        if detail is None:
+            detail = FolderDetail()
         obj = ObjectBase(
             name=name, obj_detail=detail, type_id=ObjectTypes.Folder.value.id
         )
