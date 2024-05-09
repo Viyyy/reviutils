@@ -10,7 +10,7 @@ from setuptools import setup
 
 
 name = "reviutils"
-version = "1.4.0"
+version = "1.4.1"
 packages = [
     "reviutils.common",
     "reviutils.noisepollution",
